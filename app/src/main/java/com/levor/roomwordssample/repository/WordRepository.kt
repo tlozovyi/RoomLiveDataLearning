@@ -24,11 +24,19 @@ class WordRepository {
         wordDao.update(word)
     }
 
+    suspend fun upsert(word: Word) = withContext(Dispatchers.IO) {
+        wordDao.upsert(word)
+    }
+
     suspend fun deleteAll() = withContext(Dispatchers.IO) {
         wordDao.deleteAll()
     }
 
     suspend fun deleteWord(word: Word) = withContext(Dispatchers.IO) {
         wordDao.deleteWord(word)
+    }
+
+    suspend fun getWordById(wordId: Int) = withContext(Dispatchers.IO) {
+        wordDao.getWordById(wordId)
     }
 }

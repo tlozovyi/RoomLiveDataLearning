@@ -1,4 +1,4 @@
-package com.levor.roomwordssample
+package com.levor.roomwordssample.viewModel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

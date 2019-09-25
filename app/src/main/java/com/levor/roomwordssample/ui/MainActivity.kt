@@ -1,7 +1,5 @@
 package com.levor.roomwordssample.ui
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -13,8 +11,8 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.levor.roomwordssample.R
-import com.levor.roomwordssample.WordViewModel
 import com.levor.roomwordssample.entity.Word
+import com.levor.roomwordssample.viewModel.WordViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -28,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        // TODO check view model factory approach
         wordViewModel = ViewModelProviders.of(this).get(WordViewModel::class.java)
 
         initRecyclerView()
@@ -88,37 +85,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-
-        if (resultCode == Activity.RESULT_OK) {
-            when (requestCode) {
-                NEW_WORD_ACTIVITY_REQUEST_CODE -> {
-                    data?.getParcelableExtra<Word>(NewWordActivity.EXTRA_REPLY)?.let {
-                        wordViewModel.insert(it)
-                    }
-                }
-                EDIT_WORD_ACTIVITY_REQUEST_CODE -> {
-                    data?.getParcelableExtra<Word>(NewWordActivity.EXTRA_REPLY)?.let {
-                        wordViewModel.update(it)
-                    }
-                }
-            }
-        } else {
-            Toast.makeText(applicationContext, R.string.empty_not_saved, Toast.LENGTH_LONG).show()
-        }
-    }
-
     private fun createNewWord() {
-        NewWordActivity.startActivityForResult(this, NEW_WORD_ACTIVITY_REQUEST_CODE)
+        NewWordActivity.startActivity(this)
     }
 
     private fun editWord(word: Word) {
-        NewWordActivity.startActivityForResult(this, EDIT_WORD_ACTIVITY_REQUEST_CODE, word)
-    }
-
-    companion object {
-        private const val NEW_WORD_ACTIVITY_REQUEST_CODE = 1
-        private const val EDIT_WORD_ACTIVITY_REQUEST_CODE = 2
+        NewWordActivity.startActivity(this, word.identifier)
     }
 }
