@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.levor.roomwordssample.AppSecurityManager
 import com.levor.roomwordssample.R
 import com.levor.roomwordssample.entity.Word
 import com.levor.roomwordssample.viewModel.WordViewModel
@@ -33,6 +34,12 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener {
             createNewWord()
         }
+
+        deviceDetailsTextView.text = """
+                    Is emulator: ${AppSecurityManager.isEmulator()}
+                    Is rooted: ${AppSecurityManager.isRooted(this)}
+                    Is debugger attached: ${AppSecurityManager.isDebuggerAttached()}
+                """.trimIndent()
     }
 
     private fun initRecyclerView() {
