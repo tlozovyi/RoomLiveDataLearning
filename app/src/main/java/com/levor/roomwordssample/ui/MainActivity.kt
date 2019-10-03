@@ -38,7 +38,8 @@ class MainActivity : AppCompatActivity() {
         deviceDetailsTextView.text = """
                     Is emulator: ${AppSecurityManager.isEmulator()}
                     Is rooted: ${AppSecurityManager.isRooted(this)}
-                    Is debugger attached: ${AppSecurityManager.isDebuggerAttached()}
+                    Is debugger attached: ${AppSecurityManager.isDebuggerAttached()},
+                    Is app debuggable: ${AppSecurityManager.isAppDebuggable(this)}
                 """.trimIndent()
     }
 

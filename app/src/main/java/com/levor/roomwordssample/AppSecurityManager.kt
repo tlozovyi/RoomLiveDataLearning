@@ -5,6 +5,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Debug
 import java.io.File
+import android.content.pm.ApplicationInfo
 
 object AppSecurityManager {
 
@@ -132,5 +133,9 @@ object AppSecurityManager {
 
     fun isDebuggerAttached(): Boolean {
         return Debug.isDebuggerConnected() || Debug.waitingForDebugger()
+
     }
+
+    fun isAppDebuggable(context: Context) =
+        (context.applicationContext.applicationInfo.flags and ApplicationInfo.FLAG_DEBUGGABLE) != 0
 }
