@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.levor.roomwordssample.AppSecurityManager
 import com.levor.roomwordssample.R
+import com.levor.roomwordssample.TamperingProtectionManager
 import com.levor.roomwordssample.entity.Word
 import com.levor.roomwordssample.viewModel.WordViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -40,6 +41,10 @@ class MainActivity : AppCompatActivity() {
                     Is rooted: ${AppSecurityManager.isRooted(this)}
                     Is debugger attached: ${AppSecurityManager.isDebuggerAttached()},
                     Is app debuggable: ${AppSecurityManager.isAppDebuggable(this)}
+                    
+                    Dex crc: ${TamperingProtectionManager.getDexCRC(this)}
+                    App signature: ${TamperingProtectionManager.getSignatures(this).joinToString(", ")}
+                    Installed from store: ${TamperingProtectionManager.getCurrentStore(this)}
                 """.trimIndent()
     }
 
