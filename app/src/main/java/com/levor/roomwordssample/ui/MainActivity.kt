@@ -42,6 +42,8 @@ class MainActivity : AppCompatActivity() {
                     Is debugger attached: ${AppSecurityManager.isDebuggerAttached()},
                     Is app debuggable: ${AppSecurityManager.isAppDebuggable(this)}
                     
+                    Is reverse engineering tools installed: ${AppSecurityManager.isReverseEngineeringToolsInstalled(this)}
+                    
                     Dex crc: ${TamperingProtectionManager.getDexCRC(this)}
                     App signature: ${TamperingProtectionManager.getSignatures(this).joinToString(", ")}
                     Installed from store: ${TamperingProtectionManager.getCurrentStore(this)}

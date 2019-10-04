@@ -131,6 +131,23 @@ object AppSecurityManager {
         return allPackages.intersect(knownCloakingApps).isNotEmpty()
     }
 
+    fun isReverseEngineeringToolsInstalled(context: Context): Boolean {
+        val allPackages = context.packageManager.getInstalledPackages(PackageManager.GET_META_DATA)
+            .map { it.packageName }
+
+        val toolsPackages = listOf(
+            "de.robv.android.xposed.installer",
+            "com.saurik.substrate",
+            "com.mwr.dz",
+            "asvid.github.io.fridaapp",
+            "com.devadvance.rootcloak",
+            "com.devadvance.rootcloakplus",
+            "com.android.SSLTrustKiller"
+        )
+
+        return allPackages.intersect(toolsPackages).isNotEmpty()
+    }
+
     fun isDebuggerAttached(): Boolean {
         return Debug.isDebuggerConnected() || Debug.waitingForDebugger()
 
