@@ -1,11 +1,11 @@
 package com.levor.roomwordssample
 
 import android.content.Context
+import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Debug
 import java.io.File
-import android.content.pm.ApplicationInfo
 
 object AppSecurityManager {
 
@@ -88,7 +88,12 @@ object AppSecurityManager {
             "com.zachspong.temprootremovejb",
             "com.ramdroid.appquarantine",
             "com.topjohnwu.magisk",
-            "com.yellowes.su"
+            "com.yellowes.su",
+            "com.kingroot.kinguser",
+            "com.kingo.root",
+            "com.smedialink.oneclickroot",
+            "com.zhiqupk.root.global",
+            "com.alephzain.framaroot"
         )
 
         return allPackages.intersect(knownRootAppPackages).isNotEmpty()
